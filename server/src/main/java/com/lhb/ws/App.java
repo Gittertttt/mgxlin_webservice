@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
- * 启动类
+ * 启动
  * @author lhb
  * @date 2022/2/14 12:42
  */
