@@ -4,3 +4,5 @@ client端使用idea自动构建，也可以使用jdk自带的wsimport命令。�
 
 运行截图：
 ![image](webservice/client/src/example/pic/微信截图_20220214135800.png)
+![image](webservice/client/src/example/pic/微信截图_20220214135919.png)
+![image](webservice/client/src/example/pic/微信截图_20220214135929.png)
