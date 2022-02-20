@@ -7,9 +7,12 @@ import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 import javax.xml.ws.Endpoint;
 
 /**
@@ -18,6 +21,13 @@ import javax.xml.ws.Endpoint;
  */
 @Configuration
 public class WsConfig {
+
+    /**
+     * 注入实现类。提供服务的方法
+     */
+    @Resource
+    private WsService wsService;
+
     @Bean(name = "cxfServlet")
     public ServletRegistrationBean dispatcherServlet() {
         return new ServletRegistrationBean(new CXFServlet(), "/ws/*");
@@ -29,13 +39,8 @@ public class WsConfig {
     }
 
     @Bean
-    public WsService demoService() {
-        return new WsServiceImpl();
-    }
-
-    @Bean
     public Endpoint endpoint() {
-        EndpointImpl endpoint = new EndpointImpl(springBus(), demoService());
+        EndpointImpl endpoint = new EndpointImpl(springBus(), wsService);
         endpoint.publish("/api");
         return endpoint;
     }
